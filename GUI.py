@@ -19,9 +19,10 @@ FCOLOR = '#526372'
 F1color = '#424242'
 TextColor = '#FAFAFA'
 BUcolor = '#59bfff'
-
+volume = 50
 
 root = Tk()
+root.title('Raspi-Radio')
 functionFont = font.Font(size=30)
 
 canvas = Canvas(root, height = HEIGHT, width = WIDTH)
@@ -61,6 +62,9 @@ frameMitte.place(relx = 0.5, rely =0.35,relwidth = 0.6,relheight=0.2,anchor = 'n
 frameUnten = Frame(root, bg = F1color)
 frameUnten.place(relx = 0.5, rely =0.6,relwidth = 0.8,relheight=0.3,anchor = 'n')
 
+frameVolume = Frame(root, bg = F1color)
+frameVolume.place(relx = 0.85, rely =0.025,relwidth = 0.35,relheight=0.3,anchor = 'n')
+
 #Obere Lebel für Frequenz/Sender bauen
 frequenzLabel = Label(frameOben,text = FREQUENZ,fg = TextColor, bg=F1color,font=('Arial',105))
 frequenzLabel.place(relx = 0.5, rely =0.1,relwidth = 1,relheight=0.7,anchor = 'n')
@@ -82,6 +86,18 @@ plus01Button.place(relx = 0.7, rely =0.1,relwidth = 0.15,relheight=0.8,anchor = 
 
 plus1Button = Button(frameMitte,text='>>',font=functionFont,bg = FCOLOR,fg=TextColor)
 plus1Button.place(relx = 0.9, rely =0.1,relwidth = 0.15,relheight=0.8,anchor = 'n')
+
+#build scale to change volume
+volumeScale = Scale(frameVolume, from_=0, to= 100, orient = VERTICAL, width = 50, variable = volume, fg = TextColor, bg = F1color, font = ('Arial',25))
+volumeScale.place(relx = 0.8, rely = 0.05,relwidth = 0.2, relheight = 0.9, anchor = 'n')
+#set volume for the first time
+volumeScale.set(volume)
+#build buttons to adjust volume
+volMinus1Button=Button(frameVolume,text='-',font=functionFont,bg = FCOLOR,fg=TextColor)
+volMinus1Button.place(relx = 0.25, rely =0.7,relwidth = 0.25,relheight=0.30,anchor = 'n')
+volPlus1Button=Button(frameVolume,text='+',font=functionFont,bg = FCOLOR,fg=TextColor)
+volPlus1Button.place(relx = 0.55, rely =0.7,relwidth = 0.25,relheight=0.30,anchor = 'n')
+
 
 #Shortcut-Buttons für Sender bauen
 
